@@ -2,6 +2,7 @@
 
 
 def main():
+    """ Main function for processing scores"""
     new_score = ""
     print("choose option:\nG: input score\nP: print result from score\nS: show stars from score\nQ: quit")
     choice = input(">>> ").upper()
