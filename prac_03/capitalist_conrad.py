@@ -14,7 +14,7 @@ MAX_DECREASE = 0.05  # 5%
 MIN_PRICE = 0.01
 MAX_PRICE = 1000.0
 INITIAL_PRICE = 10.0
-OUTPUT_FILE = "out_file.py"
+OUTPUT_FILE = "daily_prices.txt"
 
 out_file = open(OUTPUT_FILE, 'w')
 
