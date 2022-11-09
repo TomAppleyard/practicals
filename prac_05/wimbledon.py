@@ -1,32 +1,30 @@
 FILENAME = "wimbledon.csv"
-wimbledons = []
-champions = []
 
 
 def main():
-    wimbledons = format_data(FILENAME)
+    results = []
+    print(FILENAME)
+    with open(FILENAME, "r", encoding="utf-8-sig") as in_file:
+        in_file.readline()  # removes first line read csv file
+        for line in in_file:
+            parts = line.strip().split(',')
+            results.append(parts)
+    champion_to_wins, countries = find_champions(results)
+    print("Wimbledon Champions:")
+    for name, wins in champion_to_wins.items():  # items() returns a list of all the key and values ina dictionary
+        print(name, wins)
 
 
-def find_champions(wimbledons):
+def find_champions(results):
     champion_to_wins = {}
     countries = set()
-    for wimbledon in wimbledons:
-        countries.add(wimbledon[1])
-        champion_to_wins[wimbledon[2]=wins]
-
-
-def format_data(FILENAME):
-    with open(FILENAME, "r", encoding="utf-8-sig") as in_file:
-        wimbledon = [line.strip() for line in in_file]
-        for part in wimbledon:
-            wimbledon = part.split(',')
-            wimbledons.append(wimbledon)
-    return wimbledons
-    #     in_file.readline()
-    #     for line in in_file:
-    #         wimbledon = line.strip().strip(',')
-    #         wimbledons.append(wimbledon)
-    # return wimbledons
+    for result in results:
+        countries.add(result[1])
+        try:
+            champion_to_wins[result[2]] += 1
+        except KeyError:
+            champion_to_wins[result[2]] = 1
+    return champion_to_wins, countries
 
 
 main()
