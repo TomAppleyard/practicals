@@ -6,14 +6,17 @@ from datetime import date
 
 def main():
     menu_choice = input("Menu Choice: ").upper()
+    projects = []
     while menu_choice != "Q":
         if menu_choice == "L":
-            filename = input("choose file to load from: ")
-            projects = load_data(filename)
+            infile_name = input("choose file to load from: ")
+            projects = load_data(infile_name)
             menu_choice = input("Menu Choice: ").upper()
         elif menu_choice == "S":
+            outfile_name = input("choose file to save to: ")
+            save_data(outfile_name, projects)
             print("Save")
-
+            break
         elif menu_choice == "D":
             display_projects(projects)
             print("Display")
@@ -52,6 +55,14 @@ def display_projects(projects):
     print("Completed Projects: ")
     for project in completed_projects:
         print(f"\t{project}")
+
+
+def save_data(outfile_name, projects):
+    outfile = open(outfile_name, 'w')
+    projects_string = '\t'.join(map(str, projects))
+    print(projects_string)
+    print(projects_string, file=outfile)
+    outfile.write(projects_string)
 
 
 
