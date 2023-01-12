@@ -22,6 +22,7 @@ def main():
             print("Display")
             break
         elif menu_choice == "F":
+            date_filter(projects)
             print("Filter")
         elif menu_choice == "A":
             print("Add")
@@ -64,6 +65,15 @@ def save_data(outfile_name, projects):
     print(projects_string, file=outfile)
     outfile.write(projects_string)
 
+
+def date_filter(projects):
+    date_string = input("Date (d/m/yyyy): ")  # e.g., "30/9/2022"
+    date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+    print(f"That day is/was {date.strftime('%A')}")
+    print(date.strftime("%d/%m/%Y"))
+    for project in projects:
+        if project.start_date > date:
+            print(project)
 
 
 main()
