@@ -9,14 +9,15 @@ def main():
     while menu_choice != "Q":
         if menu_choice == "L":
             filename = input("choose file to load from: ")
-            load_data(filename)
+            projects = load_data(filename)
+            menu_choice = input("Menu Choice: ").upper()
         elif menu_choice == "S":
             print("Save")
 
         elif menu_choice == "D":
             display_projects(projects)
             print("Display")
-
+            break
         elif menu_choice == "F":
             print("Filter")
         elif menu_choice == "A":
@@ -27,9 +28,6 @@ def main():
         #     # print("Incorrect menu choice")
     menu_choice = input("Menu Choice: ").upper()
     print("Thanks for coming")
-
-
-main()
 
 
 def load_data(filename):
@@ -46,11 +44,15 @@ def load_data(filename):
 
 
 def display_projects(projects):
-    completed_projects = [project for project in projects if project.is_complete()]
-    incomplete_projects = [project for project in projects if not project.is_complete()]
+    completed_projects = [project for project in projects if project.iscomplete()]
+    incomplete_projects = [project for project in projects if not project.iscomplete()]
     print("Incomplete Projects: ")
     for project in incomplete_projects:
         print(f"\t{project}")
     print("Completed Projects: ")
     for project in completed_projects:
         print(f"\t{project}")
+
+
+
+main()
