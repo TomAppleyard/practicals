@@ -1,7 +1,6 @@
 import datetime
 
 from project_class import Project
-from datetime import date
 
 
 def main():
@@ -15,22 +14,26 @@ def main():
         elif menu_choice == "S":
             outfile_name = input("choose file to save to: ")
             save_data(outfile_name, projects)
-            print("Save")
-            break
+            print("Saved")
+            menu_choice = input("Menu Choice: ").upper()
         elif menu_choice == "D":
             display_projects(projects)
             print("Display")
-            break
+            menu_choice = input("Menu Choice: ").upper()
         elif menu_choice == "F":
             date_filter(projects)
             print("Filter")
+            menu_choice = input("Menu Choice: ").upper()
         elif menu_choice == "A":
             add_project(projects)
             print("Add")
+            menu_choice = input("Menu Choice: ").upper()
         elif menu_choice == "U":
+            update_project(projects)
             print("Update")
-        # else:
-        #     # print("Incorrect menu choice")
+            menu_choice = input("Menu Choice: ").upper()
+        else:
+            print("Incorrect menu choice")
     menu_choice = input("Menu Choice: ").upper()
     print("Thanks for coming")
 
@@ -79,13 +82,25 @@ def date_filter(projects):
 
 def add_project(projects):
     new_name = input("add project name: ")
-    new_start_date = input("add project start date: ")
+    date_string = input("Date (d/m/yyyy): ")  # e.g., "30/9/2022"
+    new_start_date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
     new_priority = input("add project priority: ")
     new_estimate = input("add project estimate: ")
     new_completion = input("add project completion: ")
     new_project = Project(new_name, new_start_date, new_priority, new_estimate, new_completion)
     projects.append(new_project)
-    print(projects)
+
+
+def update_project(projects):  # no time to add option to change priority
+    project_number = 0
+    for project in projects:
+        project_number += 1
+        print(f"{project_number}\t{project}")
+    chosen_project = int(input("Choose project number: ")) - 1
+    new_completion = int(input("How much is completed now?: "))
+    new_priority = int(input("WHat is the new priority?: "))
+    projects[chosen_project].change_completion(new_completion)
+    projects[chosen_project].change_priority(new_priority)
 
 
 main()

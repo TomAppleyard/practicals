@@ -13,3 +13,8 @@ class Project:
     def iscomplete(self):
         return self.completion == 100
 
+    def change_completion(self, completion):
+        self.completion = completion
+
+    def change_priority(self, priority):
+        self.priority = priority
