@@ -25,6 +25,7 @@ def main():
             date_filter(projects)
             print("Filter")
         elif menu_choice == "A":
+            add_project(projects)
             print("Add")
         elif menu_choice == "U":
             print("Update")
@@ -74,6 +75,17 @@ def date_filter(projects):
     for project in projects:
         if project.start_date > date:
             print(project)
+
+
+def add_project(projects):
+    new_name = input("add project name: ")
+    new_start_date = input("add project start date: ")
+    new_priority = input("add project priority: ")
+    new_estimate = input("add project estimate: ")
+    new_completion = input("add project completion: ")
+    new_project = Project(new_name, new_start_date, new_priority, new_estimate, new_completion)
+    projects.append(new_project)
+    print(projects)
 
 
 main()

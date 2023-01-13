@@ -13,17 +13,3 @@ class Project:
     def iscomplete(self):
         return self.completion == 100
 
-# filename = input("choose file to load from: ")
-#             infile = open(filename, 'r')
-#             projects = []
-#             infile.readline()
-#             # projects_data = [line.strip() for line in infile]
-#             for project_data in projects_data:
-#                 project = project_data.split('\t')
-#                 projects.append(project)
-#             for parts in projects:
-#                 date_string = parts[1]
-#                 date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
-#             project = Project(parts[0], date, int(parts[2]), float(parts[3]), int(parts[4]))
-#             print(projects)
-#             menu_choice = input("Menu Choice: ").upper()
