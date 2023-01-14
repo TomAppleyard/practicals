@@ -1,9 +1,9 @@
 import datetime
-
 from project_class import Project
 
 
 def main():
+    """Software for storing and changing project data"""
     menu_choice = input("Menu Choice: ").upper()
     projects = []
     while menu_choice != "Q":
@@ -39,6 +39,7 @@ def main():
 
 
 def load_data(filename):
+    """Create objects in Project class using the information from the projects.txt page"""
     projects = []
     infile = open(filename, 'r')
     infile.readline()
@@ -52,6 +53,7 @@ def load_data(filename):
 
 
 def display_projects(projects):
+    """Displays the most recent objects in the Project class in a user-friendly manner"""
     completed_projects = [project for project in projects if project.iscomplete()]
     incomplete_projects = [project for project in projects if not project.iscomplete()]
     print("Incomplete Projects: ")
@@ -63,6 +65,7 @@ def display_projects(projects):
 
 
 def save_data(outfile_name, projects):
+    """Writes the most recent objects in the Project class to a file of the users choice"""
     outfile = open(outfile_name, 'w')
     projects_string = '\t'.join(map(str, projects))
     print(projects_string)
@@ -71,6 +74,7 @@ def save_data(outfile_name, projects):
 
 
 def date_filter(projects):
+    """Sorts projects in the class based on whether they come after the date inputted by the user"""
     date_string = input("Date (d/m/yyyy): ")  # e.g., "30/9/2022"
     date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
     print(f"That day is/was {date.strftime('%A')}")
@@ -81,6 +85,7 @@ def date_filter(projects):
 
 
 def add_project(projects):
+    """Adds a movie based on the users input for each class attribute"""
     new_name = input("add project name: ")
     date_string = input("Date (d/m/yyyy): ")  # e.g., "30/9/2022"
     new_start_date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
@@ -91,7 +96,8 @@ def add_project(projects):
     projects.append(new_project)
 
 
-def update_project(projects):  # no time to add option to change priority
+def update_project(projects):
+    """Updates a project by changing the completion and/or priority based on user input"""
     project_number = 0
     for project in projects:
         project_number += 1
